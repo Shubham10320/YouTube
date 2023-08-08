@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>index2</title>
+    <style>
+        body{
+            background-color: rgb(35, 30, 30);
+        }
+        .container> #frame{
+            display: block;
+            width: 60vw;
+            margin: auto;
+            height: 60vh;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+    </div>
+</body>
+</html>
+<script>
+    let data=JSON.parse(localStorage.getItem('videoID')) || []
+
+
+    let frame=document.createElement('iframe')
+    frame.id='frame';
+    frame.src=`https://www.youtube.com/embed/${data}`
+    frame.allowFullscreen='true'
+    // frame.frameBorder='2px'
+    // frame.allow='accelerometer'
+    // frame.width='70%'
+    // frame.height='100%'
+    // frame.style.margin='auto'
+
+    document.querySelector('.container').append(frame)
+</script>
+
+

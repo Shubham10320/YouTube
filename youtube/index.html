@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube</title>
+    <style>
+        body{
+            background-color: rgb(61, 59, 59);
+        }
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        nav{
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            background-color: rgb(30, 27, 27);
+            color: white;
+            padding: 13px;
+
+        }
+        nav input{
+            width: 30%;
+            padding: 10px;
+            border-radius: 30px 0 0 30px;
+        
+        }
+        nav button{
+            width: 120px;
+            border-radius: 0px 30px 30px 0;
+            padding: 10px;
+            background-color: rgb(64, 63, 63);
+            color: white;
+            border: none;
+            
+        }
+        .popularContainer{
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            width: 85%;
+            margin: auto;
+            justify-content: center;
+            margin-top: 20px;
+            gap: 30px;
+             
+        }
+        .popularContainer>#boxer{
+            height: 42vh;
+            padding: 3px;
+            border-radius: 8px;
+            color: white;
+            background-color: rgb(43, 39, 39);
+        }
+        .popularContainer>#boxer img{
+             width: 100%;
+        }
+        #box{
+            display: flex;
+            width: 60%;
+            margin: auto;
+            margin-top: 10px;
+            color: white;
+            gap: 40px;
+            padding: 10px;
+            background-color: rgb(39, 34, 34);
+        }
+        #box img{
+            width: 250px;
+            height: 200px;
+        }
+        #box #info h2{
+           margin-top: 8px;
+           margin-bottom: 10px;
+        }
+        #box #info p+p{
+            margin-top: 50px;
+        }
+        .filterPart{
+            display: flex;
+            width: 85%;
+            margin: auto;
+            justify-content: space-between;
+            margin-top: 10px;
+            gap: 20px;
+        }
+        .filterPart button{
+            width: 12rem;
+            padding: 8px;
+            border-radius: 18px;
+            border: none;
+            background-color: rgb(23, 22, 22);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <input type="text" placeholder="Search..." id="inputVal">
+        <button id="btn">search</button>
+    </nav>
+    <div class="filterPart">
+       <button value="dsa" class="dataFilter"  id="dsa" onclick="dsa()">DSA</button>
+       <button value="music" class="dataFilter"  id="music" onclick="music()">music</button>
+       <button  value="dance"  class="dataFilter" id="dance" onclick="dance()">dance</button>
+       <button value="chicken" class="dataFilter"  id="chicken" onclick="chicken()">chicken</button>
+       <button value="travelling"  class="dataFilter" id="travelling blog" onclick="travellingblog()">travelling blog</button>
+       <button  value="cartoon"  class="dataFilter" id="cartoon" onclick="cartoon()">cartoon</button>
+       <button value="ben10"  class="dataFilter" id="ben10" onclick="ben10()">Ben10</button>
+       <button value="gym"  class="dataFilter" id="gym" onclick="gym()">GYM</button>
+       <button value="web development" class="dataFilter"onclick="development()" id="webdevelopment">web development</button>
+    </div>
+    <div class="popularContainer"></div>
+    <div class="container">
+
+    </div>
+</body>
+</html>
+<script>
+
+    let apiKey='AIzaSyCHYeDnsxOsHKLTd4Amed3CfT96qlaDUY8'
+
+
+    window.onload= async function popular(){
+        try{
+          let res=await fetch(`https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=30&regionCode=IN&key=${apiKey}`)
+          let resolved=await res.json();
+          console.log(resolved)
+          showPopular(resolved.items)
+        }
+        catch(error){
+          console.log(error)
+        }
+    }
+    async function development(){
+        let ans=document.getElementById('webdevelopment').value;
+        try{
+            let result= await fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=20&q=${ans}video&key=${apiKey}`)
+            let res= await result.json()
+            displayData(res.items);
+        }
+        catch(error){
+            console.log(error)
+        }
+    }
+    async function gym(){
+        let ans=document.getElementById('gym').value;
+        try{
+            let result= await fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=20&q=${ans}video&key=${apiKey}`)
+            let res= await result.json()
+            displayData(res.items);
+        }
+        catch(error){
+            console.log(error)
+        }
+    }
+    async function ben10(){
+        let ans=document.getElementById('ben10').value;
+        try{
+            let result= await fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=20&q=${ans}video&key=${apiKey}`)
+            let res= await result.json()
+            displayData(res.items);
+        }
+        catch(error){
+            console.log(error)
+        }
+    }
+
+   async function cartoon(){
+        let ans=document.getElementById('cartoon').value;
+        try{
+            let result= await fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=20&q=${ans}video&key=${apiKey}`)
+            let res= await result.json()
+            displayData(res.items);
+        }
+        catch(error){
+            console.log(error)
+        }
+    }
+    async function dsa(){
+        let ans=document.getElementById('dsa').value;
+        try{
+            let result= await fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=20&q=${ans}video&key=${apiKey}`)
+            let res= await result.json()
+            displayData(res.items);
+        }
+        catch(error){
+            console.log(error)
+        }
+    }
+    async function dance(){
+        let ans=document.getElementById('dance').value;
+        try{
+            let result= await fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=20&q=${ans}video&key=${apiKey}`)
+            let res= await result.json()
+            displayData(res.items);
+        }
+        catch(error){
+            console.log(error)
+        }
+    }
+    async function chicken(){
+        let ans=document.getElementById('chicken').value;
+        try{
+            let result= await fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=20&q=${ans}video&key=${apiKey}`)
+            let res= await result.json()
+            displayData(res.items);
+        }
+        catch(error){
+            console.log(error)
+        }
+    }
+    async function travellingblog(){
+        let ans=document.getElementById('travelling blog').value;
+        try{
+            let result= await fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=20&q=${ans}video&key=${apiKey}`)
+            let res= await result.json()
+            displayData(res.items);
+        }
+        catch(error){
+            console.log(error)
+        }
+    }
+    async function music(){
+        let ans=document.getElementById('music').value;
+        try{
+            let result= await fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=20&q=${ans}video&key=${apiKey}`)
+            let res= await result.json()
+            displayData(res.items);
+        }
+        catch(error){
+            console.log(error)
+        }
+    }
+
+
+    let showPopular=(data)=>{
+        data.forEach((elem)=>{
+            let box=document.createElement('div')
+            box.id='boxer'
+
+            // let imgBox=document.createElement('div')
+            // imgBox.id='Imageboxer'
+
+            // let info=document.createElement('div')
+            // info.id='Homeinfo'
+
+            let img=document.createElement('img')
+            img.src=elem.snippet.thumbnails.high.url
+            img.classList='Homethumbnails'
+            img.addEventListener('click', function(){
+                arr.push(elem.id)
+                localStorage.setItem('videoID', JSON.stringify(arr));
+                window.location.href='index2.html'
+            })
+
+            let name=document.createElement('p')
+            name.textContent=elem.snippet.title
+            name.id='Hometitle'
+
+            box.append(img, name)
+            document.querySelector('.popularContainer').append(box)
+        })
+    }
+    
+    let showData=()=>{
+        
+        let inputVal=document.getElementById('inputVal').value;
+        let result=fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=20&q=${inputVal}video&key=${apiKey}`)
+       
+        result.then((resolved)=>{
+            return resolved.json();
+        }).then((response)=>{
+            displayData(response.items)
+        }).catch((error)=>{
+            console.log(error)
+        })
+    }
+
+    // let showData=()=>{
+    //     let inputVal=document.getElementById('inputVal').value;
+    //     fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=20&q=${inputVal}video&key=${apiKey}`)
+    //     .then((resolved)=> resolved.json())
+    //     .then((res)=>displayData(res.items))
+    //     .catch((rejected)=>console.log(rejected))
+    // }
+
+
+    document.getElementById('btn').addEventListener('click', showData)
+    let arr=[]
+    function displayData(data){
+        document.querySelector('.popularContainer').style.display='none'
+        document.querySelector('.container').textContent=''
+        data.forEach((elem)=>{
+            let box=document.createElement('div')
+            box.id='box'
+
+            let imgBox=document.createElement('div')
+            imgBox.id='imgBox'
+
+            let info=document.createElement('div')
+            info.id='info'
+
+            let img=document.createElement('img')
+            img.src=elem.snippet.thumbnails.high.url
+            img.classList='thumbnails'
+            img.addEventListener('click', function(){
+                arr.push(elem.id.videoId)
+                localStorage.setItem('videoID', JSON.stringify(arr));
+                window.location.href='index2.html'
+            })
+             
+            let name=document.createElement('h2')
+            name.textContent=elem.snippet.title
+            name.id='title'
+
+            let des=document.createElement('p')
+            des.textContent=elem.snippet.description
+            des.id='des'
+
+            let channel=document.createElement('p')
+            channel.textContent=elem.snippet.channelTitle;
+            channel.id='channel'
+
+            imgBox.append(img)
+            info.append(name, des, channel)
+            box.append(imgBox, info)
+            document.querySelector('.container').append(box)
+        })
+    }
+
+
+</script>
+
+
+<!-- //https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=20&q=$avangers%20web%20development&type=video&key=AIzaSyCHYeDnsxOsHKLTd4Amed3CfT96qlaDUY8 -->
